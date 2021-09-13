@@ -1,0 +1,46 @@
+<div class="container">
+  <header>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <!--会員がログインしている時-->
+      <% if user_signed_in? %>
+        <%= link_to ' Aniva',posts_path,class: 'nav-link text-dark' %>
+      <!--管理者がログインしている時-->
+      <% elsif admin_signed_in? %>
+        <%= Aniva %>
+      <!--ログインしていない時-->
+      <% else %>
+        <%= link_to ' Aniva',root_path,class: 'nav-link text-dark' %>
+      <% end %>
+          
+      <!-- ハンバーガーメニュー -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- ナビゲーションメニュー -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+        <!--会員がログインしている時-->
+        <% if user_signed_in? %>
+          <li><%= link_to ' ホーム',posts_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' トーク',chats_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' マイページ',users_my_page_path ,class: 'nav-link text-dark'%></li>
+          <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
+        <!--管理者がログインしている時-->
+        <% elsif admin_signed_in? %>
+          <li><%= link_to ' ホーム',user_path(current_user),class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' カテゴリー',users_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' 会員一覧',books_path ,class: 'nav-link text-dark'%></li>
+          <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
+        <!--ログインしていない時-->
+        <% else %>
+          <li><%= link_to ' トップ',root_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' 新規登録', new_user_registration_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' ログイン', new_user_session_path ,class: 'nav-link text-dark'%></li>
+        <% end %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+</div>
+  

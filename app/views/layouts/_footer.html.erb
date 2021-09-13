@@ -1,0 +1,13 @@
+<footer>
+  <div class='container mt-5'>
+    <div class='row'>
+      <div class='mx-auto'>
+        <% if user_signed_in? %>
+        <p><%= link_to ' お問合せ',inquiry_path(current_user),class: 'nav-link text-dark' %></p>
+        <% else %>
+        <p>footer</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</footer>

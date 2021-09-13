@@ -1,1 +1,28 @@
-<h1>田中</h1>
+<main class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col-1 col-sm-2 col-lg-4 col-xl-6">
+        <br></br>
+        <div class="top2 mr-4 text-right">
+          <%= image_tag("top2.png", size:"300x400") %>
+        </div>
+      </div>
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <br></br>
+        <h1 class="text-center">Aniva へようこそ !!</h1>
+        <br></br>
+        <p>誕生日、結婚記念日、バレンタイン、クリスマス…。</p>
+        <p>人生にいろどりとうるおいを与える様々なイベントシーンにおいて忘れられない思い出を作りませんか？ </p>
+        <br></br>
+        <div class="btn-wrapper col-10 mx-auto">
+          <div>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in"%>
+          </div>
+          <div>
+            <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up"%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
