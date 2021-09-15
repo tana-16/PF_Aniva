@@ -13,9 +13,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  namespace :admin do
-
-    get "top" => "orders#index"
+  namespace :admins do
 
     resources :posts,only: [:index,:show,:destroy]
     resources :categories,only: [:index,:create,:edit,:update,:destroy]
@@ -43,9 +41,10 @@ Rails.application.routes.draw do
 
     resources :chats,only: [:index,:show,:create]
 
-    resources :inquiries,only: [:show,:create]
-    
-    resources :chats, only: [:show, :create]
+    resources :inquiries,only: [:new, :create]
+    post 'inquiries/confirm', to: 'inquiries#confirm', as: 'confirm'
+    post 'inquiries/back', to: 'inquiries#back', as: 'back'
+    get 'done', to: 'inquiries#done', as: 'done'
 
  end
 

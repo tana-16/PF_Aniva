@@ -3,7 +3,7 @@
     <div class='row'>
       <div class='mx-auto'>
         <% if user_signed_in? %>
-        <p><%= link_to ' お問合せ',inquiry_path(current_user),class: 'nav-link text-dark' %></p>
+        <p><%= link_to ' お問合せ',new_inquiry_path(current_user),class: 'nav-link text-dark' %></p>
         <% else %>
         <p>footer</p>
         <% end %>

@@ -1,2 +1,0 @@
-class InquirieRoom < ApplicationRecord
-end

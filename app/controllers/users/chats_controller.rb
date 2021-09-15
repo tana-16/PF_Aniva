@@ -1,5 +1,9 @@
 class Users::ChatsController < ApplicationController
   # before_action :follow_each_other, only: [:show]
+  def index
+    @user = current_user.following_user & current_user.follower_user
+  end
+
   def show
     @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
@@ -16,6 +20,7 @@ class Users::ChatsController < ApplicationController
     @chats = @room.chats
     @chat = Chat.new(room_id: @room.id)
   end
+
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save

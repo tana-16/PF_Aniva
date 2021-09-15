@@ -28,9 +28,9 @@
           <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
         <!--管理者がログインしている時-->
         <% elsif admin_signed_in? %>
-          <li><%= link_to ' ホーム',admin_posts_path,class: 'nav-link text-dark' %></li>
-          <li><%= link_to ' カテゴリー',admin_categories_path,class: 'nav-link text-dark' %></li>
-          <li><%= link_to ' 会員一覧',admin_users_path ,class: 'nav-link text-dark'%></li>
+          <li><%= link_to ' ホーム',admins_posts_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' カテゴリー',admins_categories_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' 会員一覧',admins_users_path ,class: 'nav-link text-dark'%></li>
           <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' %></li>
         <!--ログインしていない時-->
         <% else %>

@@ -14,7 +14,11 @@
  *= require_self
  */
  @import "bootstrap";
- 
+
+ header {
+   height: 56px;
+ }
+
 // ハンバーガーメニューボタンの色
  .navbar-light .navbar-toggler {
    border-color: rgba(0,0,0,0);
