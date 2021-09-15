@@ -1,12 +1,12 @@
 <div>
-  <%= attachment_image_tag @post, :image %>
+  <%= attachment_image_tag @post, :image, :fill, 200, 200 %>
   <p>説明：<%= @post.body %></p>
   <p>ユーザーネーム：<%= @post.user.name %></p>
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
     <%= link_to "削除", posts_path(@post), method: :delete %>
   <% end %>
-  
+
   <% if @post.liked_by?(current_user) %>
     <p>
       <%= link_to post_likes_path(@post), method: :delete do %>
@@ -35,4 +35,5 @@
     <%= f.text_area :body, rows:'1',placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
+  <%= link_to "編集", edit_post_path(@post) %>
 </div>

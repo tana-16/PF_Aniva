@@ -1,4 +1,4 @@
-class LikesController < ApplicationController
+class Users::LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
