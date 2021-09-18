@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_174855) do
+ActiveRecord::Schema.define(version: 2021_09_11_174331) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -46,19 +46,12 @@ ActiveRecord::Schema.define(version: 2021_09_11_174855) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inquirie_rooms", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "admin_id"
-    t.integer "room_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "inquiries", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "admin_id"
-    t.integer "room_id"
-    t.text "message"
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.text "replay_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,7 +110,7 @@ ActiveRecord::Schema.define(version: 2021_09_11_174855) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "profile_image"
+    t.string "profile_image_id"
     t.integer "gender", default: 0
     t.integer "age", default: 0
     t.text "introduction"

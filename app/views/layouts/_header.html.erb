@@ -1,7 +1,7 @@
-<div class="container">
-  <header>
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+<header>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container">
       <!--会員がログインしている時-->
       <% if user_signed_in? %>
         <%= link_to ' Aniva',posts_path,class: 'nav-link text-dark' %>
@@ -12,7 +12,7 @@
       <% else %>
         <%= link_to ' Aniva',root_path,class: 'nav-link text-dark' %>
       <% end %>
-          
+
       <!-- ハンバーガーメニュー -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,14 +24,14 @@
         <% if user_signed_in? %>
           <li><%= link_to ' ホーム',posts_path,class: 'nav-link text-dark' %></li>
           <li><%= link_to ' トーク',chats_path,class: 'nav-link text-dark' %></li>
-          <li><%= link_to ' マイページ',users_my_page_path ,class: 'nav-link text-dark'%></li>
+          <li><%= link_to ' マイページ',user_path(current_user) ,class: 'nav-link text-dark'%></li>
           <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
         <!--管理者がログインしている時-->
         <% elsif admin_signed_in? %>
-          <li><%= link_to ' ホーム',user_path(current_user),class: 'nav-link text-dark' %></li>
-          <li><%= link_to ' カテゴリー',users_path,class: 'nav-link text-dark' %></li>
-          <li><%= link_to ' 会員一覧',books_path ,class: 'nav-link text-dark'%></li>
-          <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' ホーム',admins_posts_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' カテゴリー',admins_categories_path,class: 'nav-link text-dark' %></li>
+          <li><%= link_to ' 会員一覧',admins_users_path ,class: 'nav-link text-dark'%></li>
+          <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' %></li>
         <!--ログインしていない時-->
         <% else %>
           <li><%= link_to ' トップ',root_path,class: 'nav-link text-dark' %></li>
@@ -40,7 +40,6 @@
         <% end %>
         </ul>
       </div>
-    </nav>
-  </header>
-</div>
-  
+    </div>
+  </nav>
+</header>
