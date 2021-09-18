@@ -18,6 +18,7 @@ class Users::InquiriesController < ApplicationController
   end
 
   def thanks
+    # byebug
     # メール送信
     @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
     InquiryMailer.received_email(@inquiry).deliver
