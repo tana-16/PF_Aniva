@@ -1,14 +1,18 @@
 class Users::PostsController < ApplicationController
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   # 投稿データの保存
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -40,7 +44,11 @@ class Users::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :body, :user_id)
+    params.require(:post).permit(:image, :body, :category_id)
+  end
+
+  def set_categories
+    @categories = Category.where(is_valid: true)
   end
 
 end
