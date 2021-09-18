@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # get 'inquiry/index'
+  # get 'inquiry/confirm'
+  # get 'inquiry/thanks'
   root to:'homes#top'
 
   devise_for :admins, controllers: {
@@ -17,10 +20,9 @@ Rails.application.routes.draw do
 
     resources :posts,only: [:index,:show,:destroy]
     resources :categories,only: [:index,:create,:edit,:update,:destroy]
-    resources :users,only: [:index,:show,:edit,:update,:destroy] do
-      get "users/users_show" => "users#users_show"
+    resources :users,only: [:index,:show,:edit,:update] do
+      get "check" => "users#check"
     end
-    resources :inquiries,only: [:index,:show,:create]
 
   end
 
@@ -41,10 +43,10 @@ Rails.application.routes.draw do
 
     resources :chats,only: [:index,:show,:create]
 
-    resources :inquiries,only: [:new, :create]
-    post 'inquiries/confirm', to: 'inquiries#confirm', as: 'confirm'
-    post 'inquiries/back', to: 'inquiries#back', as: 'back'
-    get 'done', to: 'inquiries#done', as: 'done'
+    # root  'inquiry#index'
+    get   'inquiries'         => 'inquiries#index'     # 入力画面
+    post  'inquiries/confirm' => 'inquiries#confirm'   # 確認画面
+    post  'inquiries/thanks'  => 'inquiries#thanks'    # 送信完了画面
 
  end
 

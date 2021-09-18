@@ -10,6 +10,7 @@
     <p>説明：<%= post.body %></p>
     <p>ユーザーネーム：<%= post.user.name %></p>
     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+    <%= link_to "削除", admins_post_path(post), method: :delete %>
   </div>
 <% end %>
 </div>

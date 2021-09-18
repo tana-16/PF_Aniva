@@ -1,52 +1,28 @@
 class Users::InquiriesController < ApplicationController
-  def new
-    @contact = Contact.new
+  def index
+    # 入力画面を表示
+    @inquiry = Inquiry.new
+    # render :action => 'index'
   end
 
-  # 確認画面を作成する場合はこのような記述になるかと思います。
-  # newアクションから入力内容を受け取り、
-  # 送信ボタンを押されたらcreateアクションを実行します。
   def confirm
-    @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
-  end
-　
-  # 入力内容に誤りがあった場合、
-  # 入力内容を保持したまま前のページに戻るのが当たり前になっているかと思いますが、
-  # backアクションを定義することで可能となります。
-  def back
-    @contact = Contact.new(contact_params)
-    render :new
-  end
-
-  # 実際に送信するアクションになります。
-  # ここで初めて入力内容を保存します。
-  # セキュリティーのためにも一定時間で入力内容の削除を行ってもいいかもしれません。
-  def create
-    @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.send_mail(@contact).deliver_now
-      redirect_to done_path
+    # 入力値のチェック
+    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
+    if @inquiry.valid?
+      # OK。確認画面を表示
+      render :action => 'confirm'
     else
-      render :new
+      # NG。入力画面を再表示
+      render :action => 'index'
     end
   end
 
-  # 送信完了画面を使用する場合お使いください。
-  def done
-  end
+  def thanks
+    # メール送信
+    @inquiry = Inquiry.new(params[:inquiry].permit(:name, :email, :message))
+    InquiryMailer.received_email(@inquiry).deliver
 
-  private
-
-  def contact_params
-    params.require(:contact)
-          .permit(:email,
-                  :name,
-                  :phone_number,
-                  :subject,
-                  :message
-                 )
+    # 完了画面を表示
+    render :action => 'thanks'
   end
 end
