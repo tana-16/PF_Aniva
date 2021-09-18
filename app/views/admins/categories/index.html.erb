@@ -1,0 +1,33 @@
+<div class="genres-visual">
+　<div class="container text-dark">
+    <div class="p-3 mb-2 text-dark">
+      <h4>ジャンル一覧・追加</h4>
+        <%= form_with model: @category, url: '/admins/categories', local:true do |f| %>
+        <center>
+          <%= f.label :カテゴリー名 %>
+          <%= f.text_field :name %>
+          <%= f.submit "新規登録", class: "moe-btn" %>
+        <% end %>
+        </center>
+       <div class="p-3 mb-2 bg-white text-dark">
+         <table class="table">
+          <thead>
+           <tr>
+            <th>カテゴリー</th>
+            <th></th>
+           </tr>
+          </thead>
+　　　　 <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+             <td><%= category.name %></td>
+　　　　　　 <td><%= link_to "編集する",edit_admins_category_path(category),class: "moe-btn"  %></td>
+            </tr>
+          <% end %>
+         </tbody>
+        </table>
+       </div>
+     </div>
+    </div>
+  </div>
+

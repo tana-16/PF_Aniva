@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :admins do
 
     resources :posts,only: [:index,:show,:destroy]
-    resources :categories,only: [:index,:create,:edit,:update,:destroy]
+    resources :categories,only: [:index,:create,:edit,:update]
     resources :users,only: [:index,:show,:edit,:update] do
       get "check" => "users#check"
     end
