@@ -1,16 +1,39 @@
-<div class="container mt-5">
-<% @posts.each do |post| %>
-  <div>
-    <%= link_to admins_user_path(post.user.id) do %>
-      <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
-    <% end %>
-    <%= link_to admins_post_path(post.id) do %>
-      <%= attachment_image_tag post, :image, :fill, 100, 100 %>
-    <% end %>
-    <p>説明：<%= post.body %></p>
-    <p>ユーザーネーム：<%= post.user.name %></p>
-    <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
-    <%= link_to "削除", admins_post_path(post), method: :delete %>
-  </div>
-<% end %>
+<div class="container mt-5 ">
+  <% @posts.each do |post| %>
+    <div class="row mt-3">
+      <div class="col-12 ">
+        <div class="card" style="width: 40.5rem;">
+          <div class="row mx-2 my-2">
+            <div class="col-2">
+              <%= link_to admins_user_path(post.user.id) do %>
+                <%= attachment_image_tag post.user, :profile_image, size: "50x50",  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+              <% end %>
+            </div>
+            <div class="col-10 mt-2">
+              <%= post.user.name %>
+            </div>
+          </div>
+          <div class="row ml-1">
+            <%= link_to admins_post_path(post.id) do %>
+              <%= attachment_image_tag post, :image, :fill, 637, 600 %>
+            <% end %>
+          </div>
+
+          <div class="mt-2 ml-4">
+            <p>カテゴリー：<%= post.category.name %></p>
+          </div>
+          <div class="row ml-3">
+            <div class="col-11">
+              <p>説明：<%= post.body %></p>
+            </div>
+          </div>
+          <div class=" ml-4 ">
+            <p>
+              <%= link_to "#{post.comments.count} コメント", admins_post_path(post.id) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

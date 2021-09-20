@@ -1,36 +1,37 @@
-<br></br>
-<table class='table'>
-  <tr><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></tr>
-  <%= link_to ' 会員詳細',edit_admins_user_path(@user),class: 'btn btn-outline-primary' %>
-  <tr>
-    <th>name</th>
-    <th><%= @user.name %></th>
-  </tr>
-  <tr>
-    <th>age</th>
-    <th><%= @user.age %></th>
-  </tr>
-  <tr>
-    <th>gender</th>
-    <th><%= @user.gender %></th>
-  </tr>
-  <tr>
-    <th>follows</th>
-    <th><%= link_to @user.follower.count, user_follows_path(@user) %></th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th><%= link_to @user.followed.count, user_followers_path(@user) %></th>
-  </tr>
-</table>
-
-<% @post.each do |post| %>
-<div>
-  <%= link_to post_path(post.id) do %>
-    <%= attachment_image_tag post, :image, :fill, 200, 200 %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= attachment_image_tag(@user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></p>
-  <p>説明：<%= post.body %></p>
-  <p>ユーザーネーム：<%= post.user.name %></p>
+<div class="container mt-5">
+  <div class="row mb-5 border-bottom">
+    <div class="col-2">
+      <%= attachment_image_tag @user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+    </div>
+    <div class="col-9">
+      <div class="row">
+        <%= link_to ' 会員詳細',edit_admins_user_path(@user),class: 'btn btn-outline-primary' %>
+      </div>
+      <div class="row mt-2">
+        <div class="col-3"></div>
+        <div class="col-3">投稿 <%= @user.posts.count %> 件</div>
+        <div class="col-3">フォロワー <%= @user.followed.count %> 人</div>
+        <div class="col-3">フォロー中 <%= @user.follower.count %> 人</div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-3 font-weight-bold"><h4><%= @user.name %></h4></div>
+        <div class="col-3 mt-2"><%= @user.age %></div>
+        <div class="col-3 mt-2"><%= @user.gender %></div>
+      </div>
+      <div class="row mt-1 mb-5">
+        <div class="col-3"></div>
+        <div class="col-6"><%= @user.introduction %></div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <% @post.each do |post| %>
+      <div class="col-4 text-center mb-4">
+        <%= link_to admins_post_path(post.id) do %>
+          <%= attachment_image_tag post, :image, :fill, 350, 350 %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<% end %>

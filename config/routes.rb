@@ -48,6 +48,10 @@ Rails.application.routes.draw do
     post  'inquiries/confirm' => 'inquiries#confirm'   # 確認画面
     post  'inquiries/thanks'  => 'inquiries#thanks'    # 送信完了画面
 
+    resources :notifications, only: :index do
+      delete "destroy_all"
+    end
+
  end
 
 end
