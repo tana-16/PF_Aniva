@@ -1,43 +1,85 @@
-<div>
-  <%= link_to user_path(@post.user.id) do %>
-    <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100,  format: 'jpeg', fallback: "no_image.jpg" %>
-  <% end %>
-  <%= attachment_image_tag @post, :image, :fill, 200, 200 %>
-  <p>カテゴリー：<%= @post.category.name %></p>
-  <p>説明：<%= @post.body %></p>
-  <p>ユーザーネーム：<%= @post.user.name %></p>
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
-
-  <% if @post.liked_by?(current_user) %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :delete do %>
-        ♥<%= @post.likes.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_likes_path(@post), method: :post do %>
-        ♡<%= @post.likes.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+<div class='container mt-5 px-5 px-sm-0'>
+  <div class="row">
+    <div class='ml-5 col-md-5'>
+      <%= attachment_image_tag @post, :image, :fill, 500, 500 %>
+    </div>
+    <div class='col-md-5 offset-md-1'>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col-2">
+            <%= link_to user_path(@post.user.id) do %>
+              <%= attachment_image_tag @post.user, :profile_image, :fill, 50, 50,  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+            <% end %>
+          </div>
+          <div class="col-8 mt-2 ml-3">
+            <%= @post.user.name %>
+            <% if @post.user == current_user %>
+              <%= link_to "削除", post_path(@post), method: :delete %>
+              <%= link_to "編集", edit_post_path(@post) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col">
+            <p>カテゴリー：<%= @post.category.name %></p>
+            <p>説明：<%= @post.body %></p>
+            <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col">
+            <div class="row">
+                  <%= form_with model:[@post, @post_comment], local: true do |f| %>
+                    <%= f.text_field :body, rows:'1',placeholder: "コメントをここに" %>
+                    <%= f.submit "送信する" %>
+                  <% end %>
+              <div class="col">
+            <% if @post.liked_by?(current_user) %>
+                <%= link_to post_likes_path(@post), method: :delete do %>
+                  <i class="my-2 mr-2 fas fa-heart fa-lg"></i>
+                <% end %>
+              <% else %>
+                <%= link_to post_likes_path(@post), method: :post do %>
+                  <i class="my-2 mr-2 far fa-heart fa-lg"></i>
+                <% end %>
+            <% end %>
+            <i class="my-2 mx-2 far fa-comment fa-lg"></i>
+            <i class="my-2 mx-2 far fa-envelope fa-lg"></i>
+            <!--% @post.comments.each do |post_comment| %>-->
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="my-1">
+                  <% @post.comments.each do |post_comment| %>
+                  <div class="my-1">
+                  <%= link_to user_path(post_comment.user.id) do %>
+                    <%= attachment_image_tag post_comment.user, :profile_image, :fill, 25, 25,  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+                  <% end %>
+                    <%= post_comment.user.name %> : <%= post_comment.body %></br>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="card" style="width: 20rem;">-->
+      <!--  <div class="my-2 col">-->
+      <!--    %= form_with(model:[@post, @post_comment], local: true) do |f| %>-->
+      <!--      %= f.text_area :body, rows:'1',placeholder: "コメントをここに" %>-->
+      <!--      %= f.submit "送信する" %>-->
+      <!--  % end %>-->
+      <!--  </div>-->
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |post_comment| %>
-    <!--<p>%= image_tag('sample-author1.jpg') %></p>-->
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.body %>
-  <% end %>
-</div>
-<div>
-  <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-    <%= f.text_area :body, rows:'1',placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-  <%= link_to "編集", edit_post_path(@post) %>
-</div>
+

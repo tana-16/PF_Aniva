@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row ">
+    <div class="col-2"></div>
+    <div class="col-10 justify-content-center">
+      <h3>通知</h3>
+      <%= button_to "全ての通知を削除", notification_destroy_all_path(@notifications), method: :delete, class:"nae-btn" %>
+      <% if @notifications.exists? %>
+        <table class='table'>
+          <tbody>
+            <% @notifications.each do |notification| %>
+              <tr>
+                <td>
+                  <div class="users-index">
+                    <% visiter = notification.visiter %>
+                    <div class="user-view clearfix ">
+                      <%= link_to user_path(notification.visiter) do %>
+                        <%= attachment_image_tag visiter, :profile_image, size: "50x50", format: "jpeg", fallback: "no_image.jpg", class:"profile-img-circle" %>
+                      <% end %>
+                      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>通知はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

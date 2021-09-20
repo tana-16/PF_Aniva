@@ -12,7 +12,6 @@
       <% else %>
         <%= link_to ' Aniva',root_path,class: 'nav-link text-dark' %>
       <% end %>
-
       <!-- ハンバーガーメニュー -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,6 +24,10 @@
           <li><%= link_to ' ホーム',posts_path,class: 'nav-link text-dark' %></li>
           <li><%= link_to ' トーク',chats_path,class: 'nav-link text-dark' %></li>
           <li><%= link_to ' マイページ',user_path(current_user) ,class: 'nav-link text-dark'%></li>
+          <% if unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+          <% end %>
+          <li><%= link_to ' 通知', notifications_path,class: 'nav-link text-dark' %></li>
           <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'nav-link text-dark' %></li>
         <!--管理者がログインしている時-->
         <% elsif admin_signed_in? %>
