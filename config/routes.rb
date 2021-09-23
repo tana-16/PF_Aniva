@@ -28,6 +28,9 @@ Rails.application.routes.draw do
 
   scope module: "users" do
     resources :users,only: [:show,:edit,:update]do
+    member do
+      get :likes
+    end
     get "users/check" => "users#check"
     patch "users/out" => "users#out"
     resource :relationships, only: [:create, :destroy]
@@ -41,7 +44,7 @@ Rails.application.routes.draw do
     end
 
     resources :chats,only: [:index,:show,:create]
-    
+
     get   'inquiries'         => 'inquiries#index'     # 入力画面
     post  'inquiries/confirm' => 'inquiries#confirm'   # 確認画面
     post  'inquiries/thanks'  => 'inquiries#thanks'    # 送信完了画面
@@ -49,7 +52,7 @@ Rails.application.routes.draw do
     resources :notifications, only: :index do
       delete "destroy_all"
     end
-    
+
     get '/search', to: 'searches#search'
 
  end

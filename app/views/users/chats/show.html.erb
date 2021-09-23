@@ -31,7 +31,7 @@
         <div class="mx-2 my-2">
           <%= form_with model: @chat, data: {remote: true} do |f| %>
             <%= f.text_field :message, size: "45x10" %>
-            <!--%= f.hidden_field :room_id %>-->
+            <%= f.hidden_field :room_id %>
             <%= f.submit "送信" ,class: "moe-btn" %>
           <% end %>
         </div>
