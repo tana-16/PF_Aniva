@@ -65,7 +65,16 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search_for(content)
+    User.where('name LIKE ?', '%'+content+'%')
+  end
+
   # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   # validates :introduction, length: { maximum: 50 }
+
+  # validates :profile_image, presence: true
+  # validates :name, presence: true
+  # validates :address, presence: true
+  # validates :introduction, presence: false, length: { maximum: 200 }
 
 end

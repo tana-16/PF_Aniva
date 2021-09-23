@@ -1,0 +1,52 @@
+<div class="font">
+  <div class="container">
+  <div class="row" style="margin-top:40px;">
+  <div class="col-9 offset-1">
+  <h3 style="display:inline">検索結果</h3>
+  <h6 style="display:inline;">(全<%= @records.count %>件)</h6>
+  <% if @records.empty? %>
+    <div class="text-center" style="margin:30px;">
+    <p style="color:red;">該当する会員は見つかりません</p></div>
+  <% end %>
+
+  <!--<div class="d-flex flex-row flex-wrap">-->
+  <!--% @records.each do |data| %>-->
+  <!--<div class="item-image col-3" style="margin:30px 0;">-->
+  <!--    %= link_to user_path(data.id) do %>-->
+  <!--    %= attachment_image_tag data, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>-->
+  <!--    % end %><br>-->
+  <!--    %=  data.name %><br>-->
+  <!--</div>-->
+  <!--% end %>-->
+  <!--</div>-->
+
+  <div class="p-3 mb-2 text-dark">
+      <table class="table">
+        <thead>
+          <tr class="info">
+            <th>アイコン</th>
+            <th>氏名</th>
+          </tr>
+        </thead>
+        <tbody>
+				  <% @records.each do |data| %>
+  				  <tr>
+              <td class="col-２">
+                <%= link_to user_path(data.id) do %>
+                  <%= attachment_image_tag data, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+                <% end %>
+              </td>
+              <td class="col-２">
+                <%= link_to user_path(data.id), class: "btn-link" do %>
+                  <%= data.name %>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+</div>
+</div>
+</div>
+</div>

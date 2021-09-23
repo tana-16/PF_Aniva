@@ -2,9 +2,17 @@
   <div class="row ">
     <div class="col-2"></div>
     <div class="col-8 justify-content-center">
-      <div class="row ">
-        <div class="col-6">
+      <div class="row">
+        <div class="col-6 mt-2 mb-2">
           <h2>フォロワー</h2>
+          <div class="mt-2 mt-2">
+            <%= form_with(url: search_path, method: :get, local: true) do |f| %>
+              <%= f.text_field 'search[value]',placeholder:"ユーザー" , class:"search_form_text " %>
+              <%= f.button :type => "submit", class:"search_form_btn" do %>
+                <i class="fas fa-search search_form_icon"></i>
+              <% end %>
+            <% end %>
+          </div>
         </div>
         <div class="col-6 mt-2">
           <%= link_to "フォロー中", user_follows_path(@user) %>

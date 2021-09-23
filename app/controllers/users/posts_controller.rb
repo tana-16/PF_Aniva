@@ -16,6 +16,7 @@ class Users::PostsController < ApplicationController
   end
 
   def index
+    @category = Category.all
     @posts = Post.all.order("created_at DESC")
   end
 
@@ -39,6 +40,7 @@ class Users::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+
 
   # 投稿データのストロングパラメータ
   private
