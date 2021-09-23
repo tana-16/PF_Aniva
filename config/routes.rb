@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # get 'inquiry/index'
-  # get 'inquiry/confirm'
-  # get 'inquiry/thanks'
   root to:'homes#top'
 
   devise_for :admins, controllers: {
@@ -24,6 +21,8 @@ Rails.application.routes.draw do
       get "check" => "users#check"
     end
 
+    get '/search', to: 'searches#search'
+
   end
 
 
@@ -42,8 +41,7 @@ Rails.application.routes.draw do
     end
 
     resources :chats,only: [:index,:show,:create]
-
-    # root  'inquiry#index'
+    
     get   'inquiries'         => 'inquiries#index'     # 入力画面
     post  'inquiries/confirm' => 'inquiries#confirm'   # 確認画面
     post  'inquiries/thanks'  => 'inquiries#thanks'    # 送信完了画面
@@ -51,6 +49,8 @@ Rails.application.routes.draw do
     resources :notifications, only: :index do
       delete "destroy_all"
     end
+    
+    get '/search', to: 'searches#search'
 
  end
 

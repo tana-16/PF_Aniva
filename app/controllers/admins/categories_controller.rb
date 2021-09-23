@@ -9,7 +9,7 @@ class Admins::CategoriesController < ApplicationController
     if @category.save
       redirect_to admins_categories_path
     else
-      render 'inedex'
+      render 'index'
  　 end
   end
 

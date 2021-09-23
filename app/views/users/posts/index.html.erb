@@ -1,7 +1,8 @@
-<div class="container mt-5 ">
+<div class="container">
   <% @posts.each do |post| %>
-    <div class="row mt-3">
-      <div class="col-12 ">
+    <div class="row mt-3 d-flex justify-content-center">
+      <!--<div class="col-sm-2"></div>-->
+      <div class="col-sm-7">
         <div class="card" style="width: 40.5rem;">
           <div class="row mx-2 my-2">
             <div class="col-2">
@@ -19,17 +20,20 @@
             <% end %>
           </div>
           <div class="my-2 mx-2">
-            <% if post.liked_by?(current_user) %>
-              <%= link_to post_likes_path(post), method: :delete do %>
-                <i class="my-2 mx-2 fas fa-heart fa-lg"></i>
-              <% end %>
-            <% else %>
-              <%= link_to post_likes_path(post), method: :post do %>
-                <i class="my-2 mx-2 far fa-heart fa-lg"></i>
-              <% end %>
-            <% end %>
-            <i class="my-2 mx-2 far fa-comment fa-lg"></i>
-            <i class="my-2 mx-2 far fa-envelope fa-lg"></i>
+            <div class="row">
+              <div class="ml-2 col-2">
+                <div id="likes_buttons_<%= post.id %>">
+                  <%= render 'users/likes/like', post: post %>
+                </div>
+              </div>
+              <div class="col-2">
+                <i class="my-2 mx-2 far fa-comment fa-lg"></i>
+                <%= post.comments.count %>
+              </div>
+              <!--<div class="col-2">-->
+              <!--  <i class="my-2 mx-2 far fa-envelope fa-lg"></i>-->
+              <!--</div>-->
+            </div>
           </div>
           <div class="mt-2 ml-4">
             <p>カテゴリー：<%= post.category.name %></p>
