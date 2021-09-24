@@ -1,10 +1,10 @@
-<div class='container mt-5 px-5 px-sm-0'>
-  <div class="row">
-    <div class='ml-5 col-md-5'>
+<div class='container'>
+  <div class="row row mt-3 justify-content-center">
+    <div class='col-xs-5'>
       <%= attachment_image_tag @post, :image, :fill, 500, 500 %>
     </div>
-    <div class='col-md-5 offset-md-1'>
-      <div class="card" style="width: 20rem;">
+    <div class='col-xs-5'>
+      <div class="card" style="width: 31.25rem;">
         <div class="row mx-2 my-2">
           <div class="col-2">
             <%= link_to user_path(@post.user.id) do %>
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="card" style="width: 20rem;">
+      <div class="card" style="width: 31.25rem;">
         <div class="row mx-2 my-2">
           <div class="col">
             <p>カテゴリー：<%= @post.category.name %></p>
@@ -29,42 +29,38 @@
           </div>
         </div>
       </div>
-      <div class="card" style="width: 20rem;">
-      <!--  <div class="row mx-2 my-2">-->
-          <!--<div class="col">-->
-            <div class="row mx-2 my-2">
-              <%= form_with model:[@post, @post_comment], local: true do |f| %>
-                <%= f.text_field :body, rows:'1',placeholder: "コメントをここに" %>
-                <%= f.submit "送信する" %>
-              <% end %>
-            </div>
-            <div class="row mx-2 my-1">
-              <div class="col-4">
-                <div id="likes_buttons_<%= @post.id %>">
-                 <%= render 'users/likes/like', post: @post %>
-                </div>
-              </div>
-              <div class="col-4">
-                <i class="my-2 mx-2 far fa-comment fa-lg"></i>
-                  <%= @post.comments.count %>
-              </div>
-            </div>
-          <!--</div>-->
-          <div class="row mx-2 my-1">
-            <div class="col-12">
-              <div class="my-1">
-                <% @post.comments.each do |post_comment| %>
-                  <div class="my-1">
-                    <%= link_to user_path(post_comment.user.id) do %>
-                      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 25, 25,  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
-                    <% end %>
-                    <%= post_comment.user.name %> : <%= post_comment.body %></br>
-                  </div>
-                <% end %>
-              </div>
+      <div class="card" style="width: 31.25rem;">
+        <div class="row mx-2 my-2">
+          <%= form_with model:[@post, @post_comment], local: true do |f| %>
+            <%= f.text_field :body, rows:'1',placeholder: "コメントをここに", :size=>"40" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+        <div class="row mx-2 my-1">
+          <div class="col-3">
+            <div id="likes_buttons_<%= @post.id %>">
+              <%= render 'users/likes/like', post: @post %>
             </div>
           </div>
-        <!--</div>-->
+          <div class="col-4">
+            <i class="my-2 mx-2 far fa-comment fa-lg"></i>
+            <%= @post.comments.count %>
+          </div>
+        </div>
+        <div class="row mx-2 my-1">
+          <div class="col-12">
+            <div class="my-1">
+              <% @post.comments.each do |post_comment| %>
+                <div class="my-1">
+                  <%= link_to user_path(post_comment.user.id) do %>
+                    <%= attachment_image_tag post_comment.user, :profile_image, :fill, 25, 25,  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+                  <% end %>
+                  <%= post_comment.user.name %> : <%= post_comment.body %></br>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

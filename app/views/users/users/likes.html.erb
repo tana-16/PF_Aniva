@@ -1,38 +1,38 @@
 <div class="container mt-5">
   <div class="row mb-2 border-bottom">
-    <div class="col-2">
+    <div class="col-sm-12 col-md-3 text-center">
       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
     </div>
-    <div class="col-9">
+    <div class="col-sm-12 col-md-9">
       <div class="row">
         <% if @user.id == current_user.id %>
-          <div class="col-3"></div>
-          <div class="col-3"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
-          <div class="col-3"><%= link_to "投稿", new_post_path(@user) %></div>
+          <div class="col-sm-2 col-md-2"></div>
+          <div class="col-sm-5 col-md-3"><%= link_to "プロフィール編集", edit_user_path(@user) %></div>
+          <div class="col-sm-5 col-md-3"><%= link_to "投稿", new_post_path(@user) %></div>
         <% end %>
         <% if @user.id != current_user.id %>
-          <div class="col-3 my-3"></div>
+          <div class="col-sm-6 col-md-3 my-3"></div>
         <% end %>
       </div>
       <div class="row mt-2">
-        <div class="col-3"></div>
-        <div class="col-3">投稿 <%= @user.posts.count %> 件</div>
-        <div class="col-3">フォロワー <%= link_to @user.followed.count, user_followers_path(@user) %> 人</div>
-        <div class="col-3">フォロー中 <%= link_to @user.follower.count, user_follows_path(@user) %> 人</div>
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-2 col-md-3">投稿 <%= @user.posts.count %> 件</div>
+        <div class="col-sm-4 col-md-3">フォロワー <%= link_to @user.followed.count, user_followers_path(@user) %> 人</div>
+        <div class="col-sm-4 col-md-3">フォロー中 <%= link_to @user.follower.count, user_follows_path(@user) %> 人</div>
       </div>
       <div class="row mt-3">
-        <div class="col-3"></div>
-        <div class="col-3 font-weight-bold"><h4><%= @user.name %></h4></div>
-        <div class="col-3 mt-2"><%= @user.age %></div>
-        <div class="col-3 mt-2"><%= @user.gender %></div>
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-3 col-md-3 font-weight-bold"><h4><%= @user.name %></h4></div>
+        <div class="col-sm-3 col-md-3 mt-2"><%= @user.age %></div>
+        <div class="col-sm-3 col-md-3 mt-2"><%= @user.gender %></div>
       </div>
       <div class="row mt-1">
-        <div class="col-3"></div>
-        <div class="col-6"><%= @user.introduction %></div>
+        <div class="col-sm-2 col-sm-2"></div>
+        <div class="col-sm-10 col-md-6"><%= @user.introduction %></div>
       </div>
       <div class="row mt-3 mb-2">
-        <div class="col-3"></div>
-        <div class="col-3">
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-5 col-md-3">
           <% if current_user != @user %>
             <% if current_user.following?(@user) %>
               <%= link_to 'フォロー中', user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
@@ -41,7 +41,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="col-3">
+        <div class="col-sm-5 col-md-3">
           <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
             <%= link_to 'メッセージ', chat_path(@user.id), class: "btn btn-primary" %>
           <% end %>
@@ -57,11 +57,10 @@
       <div>いいねした投稿</div>
     </div>
   </div>
-  <div class="row mt-3">
+  <!--<div class="row mt-3">-->
     <% @like_posts.each do |post| %>
-    <div class="row mt-3 d-flex justify-content-center">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-7">
+    <div class="row mt-3 justify-content-center">
+      <div class="col-xs-7">
         <div class="card" style="width: 40.5rem;">
           <div class="row mx-2 my-2">
             <div class="col-2">
@@ -89,9 +88,6 @@
                 <i class="my-2 mx-2 far fa-comment fa-lg"></i>
                 <%= post.comments.count %>
               </div>
-              <!--<div class="col-2">-->
-              <!--  <i class="my-2 mx-2 far fa-envelope fa-lg"></i>-->
-              <!--</div>-->
             </div>
           </div>
           <div class="mt-2 ml-4">
@@ -111,5 +107,5 @@
       </div>
     </div>
   <% end %>
-</div>
+<!--</div>-->
 </div>
