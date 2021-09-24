@@ -1,9 +1,9 @@
 <div class="container mt-5">
-  <div class="row ">
-    <div class="col-2"></div>
-    <div class="col-10 justify-content-center">
+  <div class="row justify-content-center">
+    <!--<div class="col-2"></div>-->
+    <div class="col-12 ">
       <h3>通知</h3>
-      <%= button_to "全ての通知を削除", notification_destroy_all_path(@notifications), method: :delete, class:"nae-btn" %>
+      <%= button_to "全ての通知を削除", notification_destroy_all_path(@notifications), method: :delete, class: "btn btn-outline-secondary btn-sm btn-block" %>
       <% if @notifications.exists? %>
         <table class='table'>
           <tbody>
