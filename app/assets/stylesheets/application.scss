@@ -38,3 +38,10 @@
 //   height: 40%;
 //   width: 40%;
 // }
+
+.post-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  overflow: hidden;
+}

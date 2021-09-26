@@ -1,35 +1,38 @@
 <div class="container">
-  <br></br>
-  <br></br>
-  <h2>会員の方はこちらからログイン</h2>
-  <br></br>
+  <div class="row justify-content-center">
+    <div class="col-xs-12">
+      <br></br>
+      <br></br>
+      <h2>Aniva</h2>
+      <br></br>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="row">
-    <label class="col-md-2">メールアドレス</label>
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"60",  placeholder: "sample@example.com" %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="row">
+          <div class="col-12">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"38",  placeholder: "メールアドレス" %>
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="col-12">
+            <%= f.password_field :password, autocomplete: "current-password", :size=>"38",  placeholder: "パスワード" %>
+          </div>
+        </div>
+        <br></br>
+
+        <!--<div class="actions">-->
+        <div class="row">
+          <div class="col-12">
+            <%= f.submit "ログイン", class: 'btn btn-outline-primary btn-sm btn-block' %>
+          </div>
+        </div>
+      <!--</div>-->
+      <% end %>
+      <br></br>
+      <br>
+      <br></br>
+      <p class="text-right">アカウントをお持ちでないですか？<%= link_to "登録する", new_user_registration_path %></p><br>
+      </br>
     </div>
   </div>
-
-  <div class="row">
-    <label class="col-md-2">パスワード</label>
-    <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", :size=>"60" %>
-    </div>
-  </div>
-  <br></br>
-
-  <div class="actions">
-    <label class="col-md-2"></label>
-    <%= f.submit "ログイン", class: "btn btn-outline-primary" %>
-  </div>
-
-  <% end %>
-
-  <br></br>
-  <br>
-  <br></br>
-  <p class="text-right">登録がお済みでない方は<%= link_to "こちら", new_user_registration_path %>から新規登録をしてください</p><br>
-  </br>
 </div>

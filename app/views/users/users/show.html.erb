@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div class="row border-bottom">
+  <div class="row mb-2 border-bottom">
     <div class="col-sm-12 col-md-3 text-center">
       <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
     </div>
@@ -58,16 +58,16 @@
     </div>
   </div>
   <div class="row mt-3">
-    <div class="row">
+    <!--<div class="row">-->
       <!--<div class="col-xs-4">-->
         <% @post.each do |post| %>
-          <div class="post-image col-4 text-center mb-4">
+          <div class="post-image col-sm-4 text-center mb-4">
             <%= link_to post_path(post.id) do %>
-              <%= attachment_image_tag post, :image, :fill, 350, 350 %>
+              <%= attachment_image_tag post, :image, class: "w-100 rounded h-100" %>
             <% end %>
           </div>
         <% end %>
       <!--</div>-->
-    </div>
+    <!--</div>-->
   </div>
 </div>
