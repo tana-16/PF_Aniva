@@ -24,7 +24,7 @@
         <div class="row mx-2 my-2">
           <div class="col">
             <p>カテゴリー：<%= @post.category.name %></p>
-            <p>説明：<%= @post.body %></p>
+            <p><%= @post.body %></p>
             <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
           </div>
         </div>
@@ -65,6 +65,3 @@
     </div>
   </div>
 </div>
-
-
-

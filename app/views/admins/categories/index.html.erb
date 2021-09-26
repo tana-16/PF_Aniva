@@ -2,6 +2,7 @@
 　<div class="container text-dark">
     <div class="p-3 mb-2 text-dark">
       <h4>ジャンル一覧・追加</h4>
+      <%= render 'layouts/errors', obj: @category %>
       <% if @category.errors.any? %>
         <%= @category.errors.count %>件のエラーが発生しました
         <% @category.errors.full_messages.each do |message| %>

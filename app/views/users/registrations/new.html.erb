@@ -1,77 +1,101 @@
 <div class="container">
-  <br></br>
-  <br></br>
-  <h2>登録して友達の写真やコメントをチェックしよう</h2>
-  <br></br>
+  <div class="row justify-content-center">
+    <div class="col-xs-12">
+      <br></br>
+      <br></br>
+      <h2>Aniva</h2>
+      <h5>登録して友達の写真やコメントをチェックしよう</h5>
+      <br></br>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
 
-    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+    <!--%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>-->
 
-    <div class="row">
-      <label class="col-md-3">氏名</label>
-      <div class="field">
-      <%= f.text_field :name,autofocus: true, autocomplete: "name",  placeholder: "田中太郎" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-md-3">性別</label>
-      <div class="field">
-        <%= f.radio_button :gender, :男性 %>
-        <%= f.label :男性  %>
-        <%= f.radio_button :gender, :女性 %>
-        <%= f.label :女性  %>
-        <%= f.radio_button :gender, :その他 %>
-        <%= f.label :その他  %>
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-md-3">年齢</label>
-      <div class="field">
-        <%= f.select :age, User.ages.keys, {prompt: "選択してください"}, class: "prefecture-select" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-md-3">メールアドレス</label>
-      <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"60",  placeholder: "sample@example.com" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <label class="col-md-3">パスワード
-      <!--<div class="field">-->
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %></label>
-        <div class="field">
-          <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="row mb-3">
+          <div class="col-12">
+            <!--<label class="col-md-3">氏名</label>-->
+            <!--<div class="field">-->
+            <%= f.text_field :name,autofocus: true, autocomplete: "name", :size=>"54",  placeholder: "氏名" %>
+            <!--</div>-->
+          </div>
         </div>
-      <!--</div>-->
-    </div>
 
-    <div class="row">
-      <label class="col-md-3">パスワード（確認用）</label>
-      <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-    </div>
-    <br></br>
+        <div class="row mb-3">
+          <div class="col-12">
+            <!--<label class="col-md-3">性別</label>-->
+            <!--<div class="field">-->
+              <%= f.radio_button :gender, :男性 %>
+              <%= f.label :男性  %>
+              <%= f.radio_button :gender, :女性 %>
+              <%= f.label :女性  %>
+              <%= f.radio_button :gender, :その他 %>
+              <%= f.label :その他  %>
+            <!--</div>-->
+          </div>
+        </div>
 
-    <div class="actions">
-      <label class="col-md-3"></label>
-      <%= f.submit "新規登録", class: "btn btn-outline-success" %>
-    </div>
+        <div class="row mb-3">
+          <div class="col-2">年齢</div>
+          <div class="col-10">
+            <!--<label class="col-md-3">年齢</label>-->
+            <!--<div class="field">-->
+              <%= f.select :age, User.ages.keys, {prompt: "選択してください"}, class: "prefecture-select" %>
+            <!--</div>-->
+          </div>
+        </div>
 
-  <% end %>
+        <div class="row mb-3">
+          <div class="col-12">
+            <!--<label class="col-md-3">メールアドレス</label>-->
+            <!--<div class="field">-->
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"54",  placeholder: "メールアドレス" %>
+            <!--</div>-->
+          </div>
+        </div>
 
-  <br></br>
-  <br></br>
-  <p class="text-right">登録がお済みの方は<%= link_to "こちら", new_user_session_path %>からログインしてください</p>
-  </br>
+        <div class="row mb-3">
+          <div class="col-12">
+            <!--<label>-->
+            <!--<div class="field">-->
+              <% if @minimum_password_length %>
+                <!--<em>(%= @minimum_password_length %> 文字以上)</em>-->
+              <% end %>
+              <!--</label>-->
+              <!--<div class="field">-->
+                <%= f.password_field :password, :size=>"54", autocomplete: "new-password",  placeholder: "パスワード" %>
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-12">
+          <!--<label class="col-md-3">パスワード（確認用）</label>-->
+          <!--<div class="field">-->
+            <%= f.password_field :password_confirmation, :size=>"54", autocomplete: "new-password",  placeholder: "パスワード(確認)" %>
+          <!--</div>-->
+          </div>
+        </div>
+        <br></br>
+
+        <!--<div class="actions">-->
+          <!--<label class="col-md-3"></label>-->
+        <div class="row mb-3">
+          <div class="col-12">
+          <!--%= f.submit "新規登録", class: "btn btn-outline-success" %>-->
+            <%= f.submit "新規登録", class: 'btn btn-outline-success btn-sm btn-block' %>
+          <!--</div>-->
+          </div>
+        </div>
+
+      <% end %>
+
+      <br></br>
+      <br></br>
+      <p class="text-content ml-5">登録がお済みの方は<%= link_to "こちら", new_user_session_path %>からログインしてください</p>
+      </br>
   <!--%= render "users/shared/links" %>-->
+    </div>
+  </div>
 </div>

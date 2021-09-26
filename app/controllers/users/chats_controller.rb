@@ -1,5 +1,6 @@
 class Users::ChatsController < ApplicationController
-  # before_action :follow_each_other, only: [:show]
+  before_action :authenticate_user!
+  before_action :follow_each_other
   def index
     @user = current_user.following_user & current_user.follower_user
   end
