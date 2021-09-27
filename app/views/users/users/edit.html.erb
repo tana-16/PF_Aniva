@@ -1,0 +1,56 @@
+<div class="container mt-5">
+   <div class="row">
+     <!--<div class="col-2"></div>-->
+     <div class="col-12">
+      <div class="row ">
+        <div class="col-6">
+          <h3>プロフィール編集</h3>
+        </div>
+        <div class="col-6 mt-2 text-center">
+          <%= link_to "退会", user_users_check_path(@user), class: "btn btn-outline-secondary btn-sm"  %>
+        </div>
+      </div>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="col-8 mx-auto">
+            <%= form_with model: @user, local:true, url: user_path do |f| %>
+            <table class="row table justify-content-center table-#FFEEFF " >
+              <tr>
+                <th><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %></th>
+                <td><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></td>
+              </tr>
+              <tr>
+                <th>氏名</th>
+                <td><%= f.text_field :name, class:"form-control" %></td>
+              </tr>
+              <tr>
+                <th>性別</th>
+                <td><%= f.radio_button :gender, :男性 %>
+                    <%= f.label :男性  %>
+                    <%= f.radio_button :gender, :女性 %>
+                    <%= f.label :女性  %>
+                    <%= f.radio_button :gender, :その他 %>
+                    <%= f.label :その他  %>
+                </td>
+              </tr>
+              <tr>
+                <th>年齢</th>
+                <td><%= f.select :age, User.ages.keys, {prompt: "選択してください"}, class: "prefecture-select form-control" %></td>
+              </tr>
+              <tr>
+                <th>イントロダクション</th>
+                <td><%= f.text_area :introduction, autofocus: true, id:"inputintroduction", size: "40x10", class: "prefecture-select form-control" %></td>
+              </tr>
+              <tr>
+                <th>メールアドレス <span class="text-danger">（表示されません）</span></th>
+                <td><%= f.text_field :email , class:"form-control"%></td>
+              </tr>
+            </table>
+            <div class="row justify-content-center">
+              <%= f.submit "変更を保存する" , class: "btn btn-outline-secondary btn-sm btn-block"  %>
+              <!--%= link_to "プロフィールへ",admins_user_path, class: "moe-btn" %>-->
+              <% end %>
+            </div>
+        </div>
+      </div>
+   </div>
+ </div>

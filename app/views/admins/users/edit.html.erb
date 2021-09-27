@@ -1,0 +1,54 @@
+ <div class="container">
+   <div class="row justify-content-center">
+     <div class="p-3 mb-2 text-dark">
+      <h2>会員情報詳細</h2>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="col-12 mx-auto">
+            <%= form_with model: @user, local:true, url: admins_user_path do |f| %>
+            <table class="row table justify-content-center table-#FFEEFF mx-auto">
+              <tr>
+                <th class="col-xs-6">会員ID</th>
+                <td class="col-xs-6"><%= f.text_field :id, class:"form-control"%></td>
+              </tr>
+              <tr>
+                <th>氏名</th>
+                <td><%= f.text_field :name, class:"form-control" %></td>
+              </tr>
+              <tr>
+                <th>性別</th>
+                <td><%= f.radio_button :gender, :男性 %>
+                    <%= f.label :男性  %>
+                    <%= f.radio_button :gender, :女性 %>
+                    <%= f.label :女性  %>
+                    <%= f.radio_button :gender, :その他 %>
+                    <%= f.label :その他  %>
+                </td>
+              </tr>
+              <tr>
+                <th>年齢</th>
+                <td><%= f.select :age, User.ages.keys, {prompt: "選択してください"}, class: "prefecture-select form-control" %></td>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <td><%= f.text_field :email , class:"form-control"%></td>
+              </tr>
+              <tr>
+                <th>会員ステータス</th>
+                <td>
+                  <%= f.select :user_status, [["有効会員","false"], ["退会済み","true"]], class:"form-control" %>
+                </td>
+              </tr>
+            </table>
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <%= f.submit "変更を保存する" ,class: "moe-btn" %>
+            </div>
+            <div class="col-6 text-right">
+              <%= link_to "プロフィールへ",admins_user_path, class: 'btn btn-outline-primary' %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+   </div>
+ </div>

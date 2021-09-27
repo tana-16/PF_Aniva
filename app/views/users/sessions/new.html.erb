@@ -1,26 +1,38 @@
-<h2>Log in</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12">
+      <br></br>
+      <br></br>
+      <h2>Aniva</h2>
+      <br></br>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="row">
+          <div class="col-12">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :size=>"38",  placeholder: "メールアドレス" %>
+          </div>
+        </div>
+        </br>
+        <div class="row">
+          <div class="col-12">
+            <%= f.password_field :password, autocomplete: "current-password", :size=>"38",  placeholder: "パスワード" %>
+          </div>
+        </div>
+        <br></br>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <!--<div class="actions">-->
+        <div class="row">
+          <div class="col-12">
+            <%= f.submit "ログイン", class: 'btn btn-outline-primary btn-sm btn-block' %>
+          </div>
+        </div>
+      <!--</div>-->
+      <% end %>
+      <br></br>
+      <br>
+      <br></br>
+      <p class="text-right">アカウントをお持ちでないですか？<%= link_to "登録する", new_user_registration_path %></p><br>
+      </br>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

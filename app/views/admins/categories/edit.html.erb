@@ -1,0 +1,20 @@
+<div class="container text-dark">
+  <div class="p-3 mb-2 text-dark">
+    <div class="outer">
+      <center>
+        <div class="h4">ジャンル編集</h4></div>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="form-group col-5">
+            <%= form_with model: @category, url: admins_category_path, local: true do |f| %>
+       　　　　<%= f.label :カテゴリー名 %>
+       　　　　<%= f.text_field :name%>
+            <div class="groupp">
+              <center><%= f.submit "変更を保存", class: 'btn btn-outline-secondary btn-sm btn-block' %></center>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </center>
+    </div>
+  </div>
+</div>

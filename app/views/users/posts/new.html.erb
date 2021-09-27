@@ -1,0 +1,37 @@
+<div class="container">
+   <div class="row justify-content-center">
+     <div class="p-3 mb-2 text-dark">
+      <h3>画像投稿フォーム</h3>
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラーが発生しました
+        <% @post.errors.full_messages.each do |message| %>
+        <div class="text-danger">
+          <%= message %> !
+        </div>
+        <% end %>
+      <% end %>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="col-12">
+            <%= form_with model: @post, url:posts_path, local:true do |f| %>
+            <table class="row table justify-content-center table-#FFEEFF mx-auto" >
+              <tr>
+                <th>画像</th>
+                <td><%= f.attachment_field :image, placeholder: "画像" %></td>
+              </tr>
+              <tr>
+                <th>カテゴリー</th>
+                <td><%= f.collection_select :category_id, Category.all ,:id, :name, include_blank: "--選択してください--" %></td>
+              </tr>
+              <tr>
+                <th>キャプション</th>
+                <td><%= f.text_area :body, class:"form-control" %></td>
+              </tr>
+            </table>
+          <div class="row justify-content-center">
+            <%= f.submit "投稿" , class: "btn btn-outline-secondary btn-sm btn-block" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+   </div>
+ </div>

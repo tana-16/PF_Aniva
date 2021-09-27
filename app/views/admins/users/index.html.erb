@@ -1,0 +1,56 @@
+<div class="container">
+ <div class="row">
+  <div class="p-3 mb-2 text-dark">
+    <h4>会員一覧</h4>
+  </div>
+  <div class="col-12">
+    <div class="p-3 mb-2 text-dark">
+      <table class="table">
+        <thead>
+          <tr class="info">
+            <th>会員ID</th>
+            <th>アイコン</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+				  <% @users.each do |user| %>
+  				  <tr>
+              <td class="col-２">
+                <%= user.id %>
+              </td>
+              <td class="col-２">
+                <%= link_to admins_user_path(user), class: "btn-link" do %>
+                <%= attachment_image_tag user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+                  <!--%= user.profile_image_id %>-->
+                <% end %>
+              </td>
+              <td class="col-２">
+                <%= link_to admins_user_path(user), class: "btn-link" do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td class="col-２">
+                <%= user.email %>
+              </td>
+              <td class="col-２">
+                <% if user.user_status == true %>
+                <p class="text-success">
+      					  <i class="fas fa-bullseye red"></i>退会済み
+      				  </p>
+      				  <% elsif user.user_status == false %>
+      					<p class="text-dark">
+      					  <i class="fas fa-bullseye blue"></i>有効会員
+      					</p>
+      				  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

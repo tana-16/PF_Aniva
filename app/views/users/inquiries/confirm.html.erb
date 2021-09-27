@@ -1,0 +1,53 @@
+<div class="container">
+   <div class="row justify-content-center">
+     <div class="p-3 mb-2 text-dark">
+      <h3>お問合せ</h3>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="col-12 mx-auto">
+            <%= form_for @inquiry, :url => inquiries_thanks_path do |f| %>
+            <table class="row table justify-content-center table-#FFEEFF mx-auto" >
+              <!--<div class="col-10">-->
+              <tr>
+                <div class="col-4">
+                <th>名前</th>
+                </div>
+                <div class="col-8">
+                <td>
+                  <%= f.hidden_field :name %>
+                  <%= @inquiry.name %>
+                </td>
+                </div>
+              </tr>
+              <tr>
+                <div class="col-4">
+                <th>メールアドレス</th>
+                </div>
+                <div class="col-8">
+                <td>
+                  <%= f.hidden_field :email %>
+                  <%= @inquiry.email %>
+                </td>
+                </div>
+              </tr>
+              <tr>
+                <div class="col-4">
+                <th>お問合せ内容</th>
+                </div>
+                <div class="col-8">
+                <td>
+                  <%= f.hidden_field :message %>
+                  <%= simple_format(@inquiry.message) %>
+                </td>
+                </div>
+              </tr>
+              <!--</div>-->
+            </table>
+          <div class="row justify-content-center">
+            <%= f.submit '送信', class: 'btn btn-outline-secondary btn-sm btn-block' %>
+            <!--%= link_to "プロフィールへ",admins_user_path, class: "moe-btn" %>-->
+            <% end %>
+          </div>
+        </div>
+      </div>
+   </div>
+ </div>

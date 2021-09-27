@@ -1,0 +1,30 @@
+<div class="container">
+   <div class="row justify-content-center">
+     <div class="p-3 mb-2 text-dark">
+      <h3>編集画面</h3>
+        <div class="p-3 mb-2 bg-white text-dark">
+          <div class="col-12 mx-auto">
+            <%= form_with model:@post, local: true do |f| %>
+            <table class="row table justify-content-center table-#FFEEFF mx-auto" >
+              <tr>
+                <th><%= attachment_image_tag @post, :image, :fill, 100, 100 %></th>
+                <td><%= f.attachment_field :image, placeholder: "画像" %></td>
+              </tr>
+              <tr>
+                <th>カテゴリー</th>
+                <td><%= f.collection_select :category_id, Category.all ,:id, :name, include_blank: "--選択してください--" %></td>
+              </tr>
+              <tr>
+                <th>キャプション</th>
+                <td><%= f.text_area :body, autofocus: true, id:"inputbody", class:"form-control" %></td>
+              </tr>
+            </table>
+          <div class="row justify-content-center">
+            <%= f.submit "編集保存" ,class: "moe-btn" %>
+            <!--%= link_to "プロフィールへ",admins_user_path, class: "moe-btn" %>-->
+            <% end %>
+          </div>
+        </div>
+      </div>
+   </div>
+ </div>

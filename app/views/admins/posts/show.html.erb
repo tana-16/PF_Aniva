@@ -1,0 +1,59 @@
+<div class='container mt-5 px-5 px-sm-0'>
+  <div class="row">
+    <div class='ml-5 col-md-5'>
+      <%= attachment_image_tag @post, :image, :fill, 500, 500 %>
+    </div>
+    <div class='col-md-5 offset-md-1'>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col-2">
+            <%= link_to admins_user_path(@post.user.id) do %>
+              <%= attachment_image_tag @post.user, :profile_image, size: "50x50",  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+            <% end %>
+          </div>
+          <div class="col-8 mt-2 ml-3">
+            <%= @post.user.name %>
+            <%= link_to "削除", admins_post_path(@post), method: :delete %>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col">
+            <p>カテゴリー：<%= @post.category.name %></p>
+            <p>説明：<%= @post.body %></p>
+            <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 20rem;">
+        <div class="row mx-2 my-2">
+          <div class="col">
+            ♡<%= @post.likes.count %> いいね
+            <i class="my-2 mx-2 far fa-comment fa-lg"></i>
+            <i class="my-2 mx-2 far fa-envelope fa-lg"></i>
+
+            <% @post.comments.each do |post_comment| %>
+            <div class="row">
+              <div class="my-2 col">
+                <%= link_to admins_user_path(post_comment.user.id) do %>
+                  <%= attachment_image_tag post_comment.user, :profile_image, size: "25x25",  format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+                <% end %>
+                  <%= post_comment.user.name %> : <%= post_comment.body %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<div class="card" style="width: 20rem;">-->
+      <!--  <div class="my-2 col">-->
+      <!--    %= form_with(model:[@post, @post_comment], local: true) do |f| %>-->
+      <!--      %= f.text_area :body, rows:'1',placeholder: "コメントをここに" %>-->
+      <!--      %= f.submit "送信する" %>-->
+      <!--    % end %>-->
+      <!--  </div>-->
+      </div>
+    </div>
+  </div>
+</div>
